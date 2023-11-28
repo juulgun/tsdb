@@ -1,6 +1,6 @@
 async function fillTable() {
     try {
-        const response = await fetch('http://localhost:8080/data');
+        const response = await fetch('/data');
         const data = await response.json();
         console.log(data);
 
@@ -22,4 +22,4 @@ async function fillTable() {
     }
 }
 
-module.exports = { fillTable }
+document.addEventListener('DOMContentLoaded', fillTable);
