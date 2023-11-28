@@ -1,6 +1,6 @@
-async function fillDatabase() {
+async function fillTable() {
     try {
-        const response = await fetch('/');
+        const response = await fetch('http://localhost:8080/data');
         const data = await response.json();
         console.log(data);
 
@@ -22,4 +22,4 @@ async function fillDatabase() {
     }
 }
 
-module.exports = fillDatabase
+module.exports = { fillTable }

@@ -1,9 +1,12 @@
 const express = require('express')
 const app = express()
 const dataRoute = require('./routes/data.js')
-const fillDatabase = require('./fillDatabase.js')
+const path = require('path')
+const table = require('./public/scripts/fillTable.js')
 
-app.use(express.static("public"))
 app.use('/data', dataRoute)
+app.use(express.static(__dirname + '/public'));
+
+table.fillTable();
 
 app.listen(8080)
