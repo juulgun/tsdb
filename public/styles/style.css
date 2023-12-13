@@ -9,9 +9,10 @@ body {
   table {
     border: 1px solid #1C6EA4;
     background-color: #EEEEEE;
-    width: 100%;
+    width: 50%;
     text-align: left;
     border-collapse: collapse;
+    position: relative;
   }
   table td, table th {
     border: 1px solid #AAAAAA;

@@ -5,9 +5,8 @@ async function fillTable() {
 
         const tableBody = document.querySelector("#table");
 
-        //i = 4, omdat de eerste drie data items uit de database afwijken van de rest.
-        for (let i = 4; i < data.length; i++) {
-            let row = tableBody.insertRow(i - 3);
+        for (let i = 1; i < data.length; i++) {
+            let row = tableBody.insertRow(i);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
