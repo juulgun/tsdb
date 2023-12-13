@@ -7,4 +7,19 @@ async function getItems(container){
     return resources;
 }
 
-module.exports = {getItems} 
+async function getRoute(container){
+    const queryMaxTimestamp = 'SELECT VALUE MAX(c.timestamp) FROM c';
+    const { resources: maxTimestampResult } = await container.items.query(queryMaxTimestamp).fetchAll();
+  
+    if (maxTimestampResult.length > 0) {
+      const maxTimestamp = maxTimestampResult[0];
+  
+      // Query to fetch all entries with the maximum timestamp value
+      const queryLatestEntries = `SELECT * FROM c WHERE c.timestamp = '${maxTimestamp}'`;
+      const { resources: latestEntriesResult } = await container.items.query(queryLatestEntries).fetchAll();
+      
+      return latestEntriesResult;
+      }
+      }
+
+module.exports = {getItems, getRoute}

@@ -5,10 +5,23 @@ body {
   h1{
     text-align: center;
   }
+
+  #dashboard{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #map{
+    height:50%; 
+    width: 40%;
+    right:25px;
+    position: absolute
+  }
   
   table {
     border: 1px solid #1C6EA4;
     background-color: #EEEEEE;
+    left: 5px;
     width: 50%;
     text-align: left;
     border-collapse: collapse;
@@ -19,7 +32,7 @@ body {
     padding: 10px 5px;
   }
   table tbody td {
-    font-size: 17px;
+    font-size: 15px;
   }
   table tr:nth-child(even) {
     background: #D0E4F5;

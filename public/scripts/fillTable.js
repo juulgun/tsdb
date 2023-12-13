@@ -1,7 +1,8 @@
 async function fillTable() {
     try {
-        const response = await fetch('/data');
+        const response = await fetch('/data/latest');
         const data = await response.json();
+        console.log(data)
 
         const tableBody = document.querySelector("#table");
 
@@ -13,7 +14,7 @@ async function fillTable() {
 
             cell1.textContent = data[i].id;
             cell2.textContent = data[i].location;
-            cell3.textContent = data[i].coordinates;
+            cell3.textContent = data[i].coordinaten;
         }
 
     } catch (error) {
