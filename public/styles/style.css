@@ -6,23 +6,30 @@ body {
     text-align: center;
   }
 
-  #dashboard{
+  #dashboard {
     display: flex;
     flex-direction: row;
   }
 
+  #tableDiv{
+    flex: 1; /* Occupy remaining space */
+    margin-right: 10px; /* Add spacing between tableDiv and mapDiv */
+  }
+
+  #mapDiv {
+    height: 300px;
+    width: 50%;
+    position: relative;
+  }
+
   #map{
-    height:50%; 
-    width: 40%;
-    right:25px;
-    position: absolute
+    height: 100%; 
+    width: 100%;
   }
   
   table {
     border: 1px solid #1C6EA4;
     background-color: #EEEEEE;
-    left: 5px;
-    width: 50%;
     text-align: left;
     border-collapse: collapse;
     position: relative;
@@ -32,7 +39,7 @@ body {
     padding: 10px 5px;
   }
   table tbody td {
-    font-size: 15px;
+    font-size: 13px;
   }
   table tr:nth-child(even) {
     background: #D0E4F5;
@@ -45,7 +52,7 @@ body {
     border-bottom: 2px solid #444444;
   }
   th {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     border-left: 2px solid #D0E4F5;
   }
@@ -72,4 +79,19 @@ body {
     color: #FFFFFF;
     padding: 2px 8px;
     border-radius: 5px;
+  }
+
+  @media (max-width: 768px) {
+    #dashboard {
+      flex-direction: column; /* Change to a column layout on smaller screens */
+    }
+  
+    #tableDiv {
+      margin-right: 0; /* Remove the margin on smaller screens */
+    }
+  
+    #mapDiv {
+      width: calc(100% - 20px); /* Adjust width for smaller screens */
+      margin-top: 10px; /* Adjust margin for smaller screens */
+    }
   }

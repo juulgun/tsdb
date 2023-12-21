@@ -13,8 +13,13 @@ async function fillTable() {
             let cell3 = row.insertCell(2);
 
             cell1.textContent = data[i].id;
-            cell2.textContent = data[i].location;
-            cell3.textContent = data[i].coordinaten;
+            cell2.textContent = data[i].coordinaten;
+            cell3.textContent = data[i].toerental_per_minuut;
+
+            cell2.addEventListener('click', function(){
+                let map = document.getElementById("map");
+                map.setCenter(new google.maps.LatLng(data[i].coordinaten[0], data[i].coordinaten[1]));
+            })
         }
 
     } catch (error) {

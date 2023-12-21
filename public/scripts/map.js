@@ -1,47 +1,71 @@
-// Initialize and add the map
 let map;
 
 async function initMap() {
-
   const response = await fetch('/data/route');
   const data = await response.json();
-  console.log(data)
+  console.log(data);
 
   let coordinaten = [];
+  let dictionary = {};
 
   for (let i = 0; i < data.length; i++) {
-    coordinaten.push(data[i].coordinaten)
-}
+    let coordinaten2 = data[i].coordinaten;
+    dictionary[coordinaten2] = data[i].toerental_per_minuut;
 
-let coordinaten2 = [];
+    coordinaten.push(coordinaten2);
+  }
 
-coordinaten.forEach(coordinate => {
-    const [lat, lng] = coordinate; // Destructure the latitude and longitude from the list
-    coordinaten2.push({ lat, lng }); // Push the object into the flightPlanCoordinates array
+  console.log(dictionary)
+
+  let route = [];
+
+  coordinaten.forEach(coordinate => {
+    const [lat, lng] = coordinate;
+    route.push({ lat, lng });
   });
-  
-  console.log(coordinaten2);
-  
-  
+
   const { Map } = await google.maps.importLibrary("maps");
 
-  // The map, centered at Uluru
+  let bounds = new google.maps.LatLngBounds();
+  route.forEach(coord => {
+    bounds.extend(coord);
+  });
+  let center = bounds.getCenter();
+
   map = new Map(document.getElementById("map"), {
-    zoom: 16,
-    center: coordinaten2[0],
-    mapId: "DEMO_MAP_ID",
+    zoom: 17,
+    center: center,
   });
 
-  const route = new google.maps.Polyline({
-    path: coordinaten2,
+  const routeLine = new google.maps.Polyline({
+    path: route,
     geodesic: true,
-    strokeColor: "#FF0000",
+    strokeColor: "#1C6EA4",
     strokeOpacity: 1.0,
     strokeWeight: 2,
   });
 
-  route.setMap(map);
+  routeLine.setMap(map);
 
+  route.forEach(coord => {
+    const key = `${coord.lat},${coord.lng}`;
+
+    const infowindow = new google.maps.InfoWindow({
+      content: "Toerental: " + dictionary[key], 
+    });
+
+    console.log(coord)
+
+    const marker = new google.maps.Marker({
+      position: coord,
+      map: map,
+      opacity: 0,
+    });
+
+    marker.addListener("click", () => {
+      infowindow.open(map, marker);
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initMap);
