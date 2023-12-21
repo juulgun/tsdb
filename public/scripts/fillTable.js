@@ -2,7 +2,6 @@ async function fillTable() {
     try {
         const response = await fetch('/data/latest');
         const data = await response.json();
-        console.log(data)
 
         const tableBody = document.querySelector("#table");
 
