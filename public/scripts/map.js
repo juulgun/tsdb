@@ -5,7 +5,6 @@ async function initMap() {
   
   const key = await fetch('/data/key')
   const keydata = await key.json();
-  console.log(keydata);
   const response = await fetch('/data/route');
   const data = await response.json();
 
